@@ -1,0 +1,8 @@
+gradio>=4.0
+numpy
+pandas
+pyyaml
+openai
+fastapi
+uvicorn
+pydantic

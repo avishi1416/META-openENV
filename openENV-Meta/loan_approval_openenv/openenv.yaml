@@ -1,0 +1,16 @@
+name: loan-approval-env
+
+observation_space:
+  - income
+  - credit_score
+  - loan_amount
+  - employment_years
+
+action_space:
+  - approve
+  - reject
+  - review
+
+reward_range:
+  min: 0
+  max: 1
