@@ -18,14 +18,14 @@ client = OpenAI(
 
 def run_inference():
     # 3. Stdout logs follow required structured format exactly 
-    print("START")
+    task_name = "LoanApproval"
+    print(f"[START] task={task_name}", flush=True)
     
     env = LoanApprovalEnv(task_level="hard")
     
+    total_reward = 0.0
     # Example 5-step loop for evaluation
     for i in range(1, 6):
-        print("STEP") # Following the START/STEP/END format required by the grader
-        
         state = env.state()
         prompt = (
             f"You are a risk-assessing banking AI. Based on the data: {state}\n"
@@ -49,10 +49,13 @@ def run_inference():
             action = "review"
             
         next_state, reward, done = env.step(action)
+        total_reward += reward
+        
+        print(f"[STEP] step={i} reward={reward}", flush=True)
         
         # Internally the environment advances next state automatically
         
-    print("END")
+    print(f"[END] task={task_name} score={total_reward} steps=5", flush=True)
 
 if __name__ == "__main__":
     run_inference()
